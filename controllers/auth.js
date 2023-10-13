@@ -51,21 +51,22 @@ const loginUsuario = async(req, res = response) =>{
 
         const usuario = await Usuario.findOne({ email })
 
-        if ( !usuario ) {
+        // Verificar si existe el usuario
+        if (!usuario) {
             return res.status(400).json({
                 ok: false,
-                msg: 'Error: Ususario no existe con ese email'
-            })
+                msg: 'Usuario o contraseña incorrectos' // Mensaje genérico
+            });
         }
 
-        // Confirmar passwords
+        // Verificar contraseña
         const validPassword = bcrypt.compareSync(password, usuario.password);
-
-        if ( !validPassword ) {
+        
+        if (!validPassword) {
             return res.status(400).json({
                 ok: false,
-                msg: 'Contraseña invalida'
-            })
+                msg: 'Usuario o contraseña incorrectos' // Mensaje genérico
+            });
         }
 
         // Generar nuestro JWT
