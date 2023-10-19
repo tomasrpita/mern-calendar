@@ -25,7 +25,7 @@ app.use(express.json())
 
 // Rutas
 app.use('/api/auth', require('./routes/auth'));
-// TODO: CRUD  -eventos Calendario
+app.use('/api/events', require('./routes/events'));
 
 // escuchar peticiones
 app.listen(process.env.PORT, () => {
