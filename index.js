@@ -22,10 +22,14 @@ app.use(express.static('public')); // el path es el argumento
 // Lectura y parseo del Body que venga en json
 app.use(express.json())
 
-
 // Rutas
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
+
+//
+app.get('*', (req, resp) => {
+    resp.sendFile(__dirname + '/public/index.html');
+});
 
 // escuchar peticiones
 app.listen(process.env.PORT, () => {
