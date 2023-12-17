@@ -26,7 +26,7 @@ app.use(express.json())
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
 
-// Sino es una llamada a la api entonces es una llamada a la ruta de react
+// Manejador para las rutas no capturadas por los endpoints anteriores
 app.get('*', (req, resp) => {
     resp.sendFile(__dirname + '/public/index.html');
 });
